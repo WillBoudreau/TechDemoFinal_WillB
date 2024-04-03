@@ -6,12 +6,13 @@ public class PlatfromController : MonoBehaviour
 {
     public Transform StartPOS;
     public Transform EndPOS;
+    public GameObject Player;
     public float Speed = 1;
     public float time = 5;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Player = GameObject.FindWithTag("Player");
     }
 
     // Update is called once per frame
