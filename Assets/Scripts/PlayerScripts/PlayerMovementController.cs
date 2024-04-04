@@ -12,7 +12,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField]  private CharacterController CharacterCont;
     [SerializeField]  private Transform groundCheck;
     public Vector3 StartPOS;
-    public Transform movingPlatform;
+    //public Transform movingPlatform;
     public float groundDist = 0.4f;
     public LayerMask GroundMask;
     bool IsGrounded;
