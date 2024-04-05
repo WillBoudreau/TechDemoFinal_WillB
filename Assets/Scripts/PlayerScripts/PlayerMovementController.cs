@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
 
@@ -10,12 +11,11 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField]  private float speed = 12f;
     [SerializeField]  private float gravity = -9.81f;
     [SerializeField]  private float jumpHeight = 1f;
-    [SerializeField]  private float Health = 100;
     [SerializeField]  private CharacterController CharacterCont;
     [SerializeField]  private Transform groundCheck;
+    public int health = 100;
     public Vector3 StartPOS;
-    public GameObject movingPlatform;
-    //public Transform movingPlatform;
+    public Transform movingPlatform;
     public float groundDist = 0.4f;
     public LayerMask GroundMask;
     bool IsGrounded;
@@ -28,14 +28,19 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
-        StartPOS = transform.position;
         IsPaused=false;
         PauseMenu.SetActive(false);
+        StartPOS = transform.position;
         CharacterCont = gameObject.GetComponent<CharacterController>();
         Debug.Log(StartPOS);
     }
     void Update()
     {
+        if(transform.parent !=null)
+        {
+            Vector3 platformVelocity = (transform.parent.position - movingPlatform.position);
+            CharacterCont.Move(platformVelocity * Time.deltaTime);
+        }
         //Movement
         IsGrounded = Physics.CheckSphere(groundCheck.position,groundDist,GroundMask);
 
@@ -62,19 +67,30 @@ public class PlayerMovementController : MonoBehaviour
             velocity.y = Mathf.Sqrt(jumpHeight* -0.25f* gravity);
         }
         //Pause
-        if(Input.GetKeyDown(KeyCode.Escape))
+       else if(Input.GetKeyDown(KeyCode.Escape))
         {
-            Time.timeScale = 0.0f;
-            PauseMenu.SetActive(true);
+            if(!IsPaused)
+            {
+                IsPaused = true;
+                Time.timeScale = 0.0f;
+                PauseMenu.SetActive(true);
+            }
+            else
+            {
+                Time.timeScale = 1.0f;
+                Cursor.lockState = CursorLockMode.Locked;
+                PauseMenu.SetActive(false);
+                IsPaused = false;
+            }
         }
-        if(Input.GetKeyDown(KeyCode.B))
+        else if(Input.GetKeyDown(KeyCode.B))
         {
             Time.timeScale = 1.0f;
             Cursor.lockState = CursorLockMode.Locked;
             PauseMenu.SetActive(false);
         }
         //Kill box
-        if(velocity.y <= -15)
+        else if(velocity.y <= -15)
         {   
             transform.position = StartPOS;
         }
@@ -88,19 +104,16 @@ public class PlayerMovementController : MonoBehaviour
                 StartPOS = transform.position;
                 Debug.Log(StartPOS);
             }
-            if (other.gameObject.CompareTag("Collectable"))
+            else if (other.gameObject.CompareTag("Collectable"))
             {
                 Debug.Log("Hi");
                 count++;
                 countText.text = "Collectables Collected: " + count.ToString();
             }
-            if(other.gameObject.CompareTag("MovingPlatform"))
-            {
-                this.transform.position = movingPlatform.transform.position;
-            }
         }
         public void Damage(int damage)
         {
-            
+            Debug.Log("player takes: " + damage);
+            health-= damage;
         }
 }

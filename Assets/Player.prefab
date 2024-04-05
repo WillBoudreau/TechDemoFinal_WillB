@@ -264,10 +264,11 @@ MonoBehaviour:
   speed: 12
   gravity: -9.81
   jumpHeight: 1
-  Health: 100
   CharacterCont: {fileID: 947937767635142176}
   groundCheck: {fileID: 8039257918664888890}
+  health: 100
   StartPOS: {x: 0, y: 0, z: 0}
+  movingPlatform: {fileID: 0}
   groundDist: 0.4
   GroundMask:
     serializedVersion: 2

@@ -20,8 +20,11 @@ public class CollectorManager : MonoBehaviour
     }
     public void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Hi");
-        count++;
-        countText.text = "Collectables Collected: " + count.ToString();
+        if(other.gameObject.CompareTag("Collectable"))
+        {
+            Debug.Log("Hi");
+            count++;
+            countText.text = "Collectables Collected: " + count.ToString();
+        }
     }
 }

@@ -124,6 +124,18 @@ public class EnemyAI : MonoBehaviour
     {
             enemyColor.material.color = Color.black;
             agent.SetDestination(transform.position);
+            RaycastHit hit;
+            if(Physics.Raycast(Muzzle.transform.position,Muzzle.transform.forward, out hit, GunRange))
+            {
+            Debug.Log(hit.transform.name);
+
+            PlayerMovementController player = hit.transform.GetComponent<PlayerMovementController>();
+
+            if(player != null)
+            {
+                player.Damage(GunDamage);
+            }
+            }   
             if(Vector3.Distance(transform.position, player.position) > attackDist)
             {
                 if(Vector3.Distance(transform.position, player.position) < chaseDist)

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6542821723524326525}
   - component: {fileID: 5019036036719443048}
   - component: {fileID: 5752872321608419566}
-  - component: {fileID: 5939809750641373499}
+  - component: {fileID: 246563241355850575}
   m_Layer: 0
   m_Name: Cube (2)
   m_TagString: MovingPlatform
@@ -107,7 +107,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &5939809750641373499
+--- !u!114 &246563241355850575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,12 +116,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3357282022002175850}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e54c9a75a4ab5ce4d98d06aca6ac9161, type: 3}
+  m_Script: {fileID: 11500000, guid: d8fc890b99ccb1e47862c85b8f396ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   StartPOS: {fileID: 0}
   EndPOS: {fileID: 0}
-  Player: {fileID: 0}
   Speed: 1
   time: 5
 --- !u!1 &5975334575885253349
@@ -133,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4032486540413312857}
+  - component: {fileID: 973730356585683230}
   m_Layer: 0
   m_Name: Platform
   m_TagString: Untagged
@@ -156,6 +156,22 @@ Transform:
   - {fileID: 774498047089392830}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &973730356585683230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5975334575885253349}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8fc890b99ccb1e47862c85b8f396ec1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  StartPOS: {fileID: 0}
+  EndPOS: {fileID: 0}
+  Speed: 1
+  time: 5
 --- !u!1 &5977386359734858097
 GameObject:
   m_ObjectHideFlags: 0
@@ -168,7 +184,7 @@ GameObject:
   - component: {fileID: 5052551839191530987}
   - component: {fileID: 6814518229717888897}
   - component: {fileID: 2972743390215553082}
-  - component: {fileID: 8197876043171137287}
+  - component: {fileID: 4084005121847968694}
   m_Layer: 3
   m_Name: Cube (3)
   m_TagString: MovingPlatform
@@ -262,7 +278,7 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 3.8213882, z: 1}
   m_Center: {x: 0, y: 1.4106941, z: 0}
---- !u!114 &8197876043171137287
+--- !u!114 &4084005121847968694
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -271,8 +287,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 5977386359734858097}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8550246ee7d033c47a136383c4668729, type: 3}
+  m_Script: {fileID: 11500000, guid: d8fc890b99ccb1e47862c85b8f396ec1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TeleEnd: {fileID: 0}
-  Player: {fileID: 0}
+  StartPOS: {fileID: 0}
+  EndPOS: {fileID: 0}
+  Speed: 1
+  time: 5

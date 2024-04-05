@@ -5,12 +5,11 @@ using UnityEngine;
 public class TeleporterBehaviour : MonoBehaviour
 {
     public GameObject TeleEnd;
-    public GameObject Player;
-    bool IsTeleporting = false;
+    //public GameObject Player;
     // Start is called before the first frame update
     void Start()
     {
-        Player = GameObject.FindWithTag("Player");
+        
     }
 
     // Update is called once per frame
@@ -20,18 +19,10 @@ public class TeleporterBehaviour : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (IsTeleporting == false && other.gameObject.CompareTag("Player"))
+        if(other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(Teleport());
-            Debug.Log("Teleporter entered");
+            Debug.Log("Teleportation");
+            other.transform.position = TeleEnd.transform.position;
         }
-    }
-    IEnumerator Teleport()
-    {
-        IsTeleporting = true;
-        yield return new WaitForSeconds(1f);
-        Player.transform.position = TeleEnd.transform.position;
-        yield return new WaitForSeconds(5f);
-        IsTeleporting = false;
     }
 }
