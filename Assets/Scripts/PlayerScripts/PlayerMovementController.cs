@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class PlayerMovementController : MonoBehaviour
@@ -9,6 +10,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField]  private float speed = 12f;
     [SerializeField]  private float gravity = -9.81f;
     [SerializeField]  private float jumpHeight = 1f;
+    [SerializeField]  private float Health = 100;
     [SerializeField]  private CharacterController CharacterCont;
     [SerializeField]  private Transform groundCheck;
     public Vector3 StartPOS;
@@ -91,5 +93,9 @@ public class PlayerMovementController : MonoBehaviour
                 count++;
                 countText.text = "Collectables Collected: " + count.ToString();
             }
+        }
+        public void Damage(int damage)
+        {
+            
         }
 }

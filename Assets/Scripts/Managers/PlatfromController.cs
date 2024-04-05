@@ -27,6 +27,7 @@ public class PlatfromController : MonoBehaviour
         Debug.Log("Platform");
         if(other.gameObject.CompareTag("Player"))
         {
+            Debug.Log("Player on platform");
            Player.transform.position = transform.position;
            other.transform.parent = transform;
         }

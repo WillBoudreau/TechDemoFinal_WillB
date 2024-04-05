@@ -34,6 +34,9 @@ public class EnemyAI : MonoBehaviour
     float MaxTime;
     //Enemy Vals
     public float health = 20;
+    public int GunDamage = 5;
+    public float GunRange = 20;
+    public GameObject Muzzle;
     //public AnimationClip deathanim;
     //Color for the Enemy
     Renderer enemyColor;
@@ -179,6 +182,21 @@ public class EnemyAI : MonoBehaviour
         if(health <= 0)
         {
             Death();
+        }
+    }
+    public void Attack(int attack)
+    {
+        RaycastHit hit;
+        if(Physics.Raycast(Muzzle.transform.position,Muzzle.transform.forward, out hit, GunRange))
+        {
+            Debug.Log(hit.transform.name);
+
+            PlayerMovementController player = hit.transform.GetComponent<PlayerMovementController>();
+
+            if(player != null)
+            {
+                player.Damage(GunDamage);
+            }
         }
     }
     public void Death()
