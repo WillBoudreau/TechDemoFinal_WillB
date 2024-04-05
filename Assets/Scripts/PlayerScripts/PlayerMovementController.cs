@@ -14,6 +14,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField]  private CharacterController CharacterCont;
     [SerializeField]  private Transform groundCheck;
     public Vector3 StartPOS;
+    public GameObject movingPlatform;
     //public Transform movingPlatform;
     public float groundDist = 0.4f;
     public LayerMask GroundMask;
@@ -92,6 +93,10 @@ public class PlayerMovementController : MonoBehaviour
                 Debug.Log("Hi");
                 count++;
                 countText.text = "Collectables Collected: " + count.ToString();
+            }
+            if(other.gameObject.CompareTag("MovingPlatform"))
+            {
+                this.transform.position = movingPlatform.transform.position;
             }
         }
         public void Damage(int damage)

@@ -14,7 +14,6 @@ public class PlatfromController : MonoBehaviour
     {
         Player = GameObject.FindWithTag("Player");
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -28,15 +27,15 @@ public class PlatfromController : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
             Debug.Log("Player on platform");
-           Player.transform.position = transform.position;
+           Player.transform.position = this.transform.position;
            other.transform.parent = transform;
         }
     }
-    // void OnTriggerExit(Collider other)
-    //     {
-    //         if(other.gameObject.CompareTag("Player"))
-    //         {
-    //             other.transform.parent = null;
-    //         }
-    //     }   
+    void OnTriggerExit(Collider other)
+        {
+            if(other.gameObject.CompareTag("Player"))
+            {
+                other.transform.parent = null;
+            }
+        }   
 }
