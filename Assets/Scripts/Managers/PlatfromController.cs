@@ -27,14 +27,15 @@ public class PlatfromController : MonoBehaviour
         Debug.Log("Platform");
         if(other.gameObject.CompareTag("Player"))
         {
+           Player.transform.position = transform.position;
            other.transform.parent = transform;
         }
     }
-    void OnTriggerExit(Collider other)
-        {
-            if(other.gameObject.CompareTag("Player"))
-            {
-                other.transform.parent = null;
-            }
-        }   
+    // void OnTriggerExit(Collider other)
+    //     {
+    //         if(other.gameObject.CompareTag("Player"))
+    //         {
+    //             other.transform.parent = null;
+    //         }
+    //     }   
 }
