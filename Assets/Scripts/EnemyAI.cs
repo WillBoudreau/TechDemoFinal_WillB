@@ -32,6 +32,9 @@ public class EnemyAI : MonoBehaviour
     private float retreatTime = 8f;
     public NavMeshAgent agent;
     float MaxTime;
+    //Enemy Vals
+    public float health = 20;
+    //public AnimationClip deathanim;
     //Color for the Enemy
     Renderer enemyColor;
     //Enemy Bools
@@ -43,6 +46,8 @@ public class EnemyAI : MonoBehaviour
         Target = patrolPoints[currentPatrolPoint];
         currentState = States.patrol;
         Vector3 distance = gameObject.transform.position - Target.transform.position;
+        //Fetch the animation for death
+        //deathanim = GetComponent<AnimationClip>();
         //Get a Renderer for the model
         enemyColor = GetComponent<Renderer>();
         //Distance checks
@@ -167,5 +172,18 @@ public class EnemyAI : MonoBehaviour
         {
             currentState = States.chase;
         }
+    }
+    public void Damage(float damage)
+    {
+        health -= damage;
+        if(health <= 0)
+        {
+            Death();
+        }
+    }
+    public void Death()
+    {
+       //animator.SetTrigger("Death");
+        Destroy(gameObject);
     }
 }

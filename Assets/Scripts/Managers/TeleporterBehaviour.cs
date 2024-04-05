@@ -23,6 +23,7 @@ public class TeleporterBehaviour : MonoBehaviour
         if (IsTeleporting == false && other.gameObject.CompareTag("Player"))
         {
             StartCoroutine(Teleport());
+            Debug.Log("Teleporter entered");
         }
     }
     IEnumerator Teleport()

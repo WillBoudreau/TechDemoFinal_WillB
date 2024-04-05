@@ -5,9 +5,9 @@ public class EnemyBehaviour : MonoBehaviour
 {
   public float health = 20f;
 
-  public void Damage(float amount)
+  public void Damage(float damage)
   {
-    health -=amount;
+    health -= damage;
     if(health <= 0f)
     {
         Death();
