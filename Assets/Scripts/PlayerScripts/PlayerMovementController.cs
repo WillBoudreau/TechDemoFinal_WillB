@@ -13,6 +13,7 @@ public class PlayerMovementController : MonoBehaviour
     [SerializeField]  private float jumpHeight = 1f;
     [SerializeField]  private CharacterController CharacterCont;
     [SerializeField]  private Transform groundCheck;
+    [SerializeField] private HealthBehaviour healthbehaviour; 
     public int health = 100;
     public Vector3 StartPOS;
     public Transform movingPlatform;
@@ -28,6 +29,7 @@ public class PlayerMovementController : MonoBehaviour
     // Update is called once per frame
     void Start()
     {
+        healthbehaviour = GetComponent<HealthBehaviour>();
         IsPaused=false;
         PauseMenu.SetActive(false);
         StartPOS = transform.position;
@@ -114,6 +116,6 @@ public class PlayerMovementController : MonoBehaviour
         public void Damage(int damage)
         {
             Debug.Log("player takes: " + damage);
-            health-= damage;
+            healthbehaviour.TakeDamage(damage);
         }
 }

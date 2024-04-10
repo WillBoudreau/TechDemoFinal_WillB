@@ -37,6 +37,8 @@ public class EnemyAI : MonoBehaviour
     public int GunDamage = 5;
     public float GunRange = 20;
     public GameObject Muzzle;
+    bool IsAttacking = false;
+    float attackTimer;
     //public AnimationClip deathanim;
     //Color for the Enemy
     Renderer enemyColor;
@@ -124,18 +126,29 @@ public class EnemyAI : MonoBehaviour
     {
             enemyColor.material.color = Color.black;
             agent.SetDestination(transform.position);
+        if(!IsAttacking)
+        {
+            attackTimer = 3f;
+            IsAttacking = true;
+        }
+        attackTimer -= Time.deltaTime;
+        if(attackTimer < 0)
+        {
             RaycastHit hit;
             if(Physics.Raycast(Muzzle.transform.position,Muzzle.transform.forward, out hit, GunRange))
             {
-            Debug.Log(hit.transform.name);
+                Debug.Log(hit.transform.name);
 
-            PlayerMovementController player = hit.transform.GetComponent<PlayerMovementController>();
+                PlayerMovementController player = hit.transform.GetComponent<PlayerMovementController>();
 
-            if(player != null)
-            {
-                player.Damage(GunDamage);
-            }
-            }   
+                if(player != null)
+                {
+                    player.Damage(GunDamage);
+                }
+            }  
+            IsAttacking=false;
+            attackTimer = 0f;
+        }
             if(Vector3.Distance(transform.position, player.position) > attackDist)
             {
                 if(Vector3.Distance(transform.position, player.position) < chaseDist)
@@ -194,21 +207,6 @@ public class EnemyAI : MonoBehaviour
         if(health <= 0)
         {
             Death();
-        }
-    }
-    public void Attack(int attack)
-    {
-        RaycastHit hit;
-        if(Physics.Raycast(Muzzle.transform.position,Muzzle.transform.forward, out hit, GunRange))
-        {
-            Debug.Log(hit.transform.name);
-
-            PlayerMovementController player = hit.transform.GetComponent<PlayerMovementController>();
-
-            if(player != null)
-            {
-                player.Damage(GunDamage);
-            }
         }
     }
     public void Death()
