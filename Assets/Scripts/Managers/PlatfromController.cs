@@ -27,9 +27,7 @@ public class PlatfromController : MonoBehaviour
         if(other.gameObject.CompareTag("Player"))
         {
            Debug.Log("Player on platform");
-           Player.transform.parent = transform;
            other.transform.SetParent(transform);
-           //other.transform.parent = transform;
         }
     }
     void OnTriggerExit(Collider other)
